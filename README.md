@@ -1,0 +1,2 @@
+# scotbot-docs
+scotbot documentation
