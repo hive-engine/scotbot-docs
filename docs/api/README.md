@@ -58,7 +58,7 @@ Shows information about all scot tokens
 ### Examples
 
 ```sh
-curl https://scot-api.steem-engine.com/info?token=PAL
+curl "https://scot-api.steem-engine.com/info?token=PAL"
 ```
 
 ```json
@@ -122,7 +122,7 @@ Shows configuration of a scot token
 ### Examples
 
 ```sh
-curl https://scot-api.steem-engine.com/config?token=PAL
+curl "https://scot-api.steem-engine.com/config?token=PAL"
 ```
 
 ```json
@@ -190,7 +190,7 @@ Shows account information
 ### Examples
 
 ```sh
-curl https://scot-api.steem-engine.com/@holger80?token=PAL
+curl "https://scot-api.steem-engine.com/@holger80?token=PAL"
 ```
 
 ```json
@@ -238,7 +238,7 @@ Shows information about a post
 ### Examples
 
 ```sh
-curl https://scot-api.steem-engine.com/@holger80/scotbot-time-delay-can-be-checked-and-account-blacklisting-possible
+curl "https://scot-api.steem-engine.com/@holger80/scotbot-time-delay-can-be-checked-and-account-blacklisting-possible"
 ```
 
 ```json
@@ -288,3 +288,198 @@ curl https://scot-api.steem-engine.com/@holger80/scotbot-time-delay-can-be-check
   },
   }
 ```
+
+## get_feed
+
+Shows feed for a user and token
+
+### Endpoint
+
+`GET /get_feed`
+
+### Query Parameters
+
+| Name           |  Type   | Description                              |      Required      |
+| :------------- | :-----: | :--------------------------------------- | :----------------: |
+| token          | strings | scot token name                          | :white_check_mark: |
+| account        | string  | account name                             | :white_check_mark:                   |
+| limit          |   int   | limit resutls (default 100)              |                    |
+| start_entry_id |   int   | when used, output starts with this entry |                    |
+
+### Types
+
+| Field | Description |
+| :---- | :---------: |
+|       |      `      |
+|       |             |
+
+### Examples
+
+```sh
+curl "https://scot-api.steem-engine.com/get_feed?token=PAL&account=holger80&limit=1"
+```
+
+```json
+[{"active_votes":[{"authorperm":"@mattockfs/curent-idea-for-steemsense-airdrop","block_num":34535846,"percent":400,"rshares":0,"timestamp":"2019-07-10T09:14:09","token":"PAL","voter":"nervi","weight":0},{"authorperm":"@mattockfs/curent-idea-for-steemsense-airdrop","block_num":34535811,"percent":100,"rshares":0,"timestamp":"2019-07-10T09:12:24","token":"PAL","voter":"imisstheoldkanye","weight":0},{"authorperm":"@mattockfs/curent-idea-for-steemsense-airdrop","block_num":34535809,"percent":200,"rshares":0,"timestamp":"2019-07-10T09:12:18","token":"PAL","voter":"hdu","weight":0},{"authorperm":"@mattockfs/curent-idea-for-steemsense-airdrop","block_num":34535744,"percent":10000,"rshares":0,"timestamp":"2019-07-10T09:09:03","token":"PAL","voter":"sparklemotion","weight":0},{"authorperm":"@mattockfs/curent-idea-for-steemsense-airdrop","block_num":34535706,"percent":10000,"rshares":0,"timestamp":"2019-07-10T09:07:09","token":"PAL","voter":"sentipark","weight":0}],"app":"palnet/0.1","author":"mattockfs","author_curve_exponent":1.05,"authorperm":"@mattockfs/curent-idea-for-steemsense-airdrop","beneficiaries_payout_value":0,"block":34535643,"cashout_time":"2019-07-17T09:03:57","children":0,"created":"2019-07-10T09:03:57","curator_payout_value":0,"decline_payout":false,"desc":"SteemSende-EU is still far from ready for usage, but one of the things I am working on is a smallish airdrop  for the STEEMSENSE airdrop. The prime goal for STEEMSENSE is to be a token for buying advertising budget with and earning advertising revenues in when using the steemsense-eu  steem-burning ","json_metadata":"{\"tags\": [\"steemsense\", \"token\", \"airdrop\", \"advertising\", \"palnet\"], \"users\": [\"null\"], \"links\": [\"https://www.palnet.io/dpoll/@mattockfs/steemsense-alpha-what-would-be-the-best-airdrop-strategy\"], \"app\": \"palnet/0.1\", \"format\": \"markdown\"}","last_payout":"1970-01-01T00:00:00","last_update":"2019-07-10T09:09:55","main_post":true,"pending_token":0,"permlink":"curent-idea-for-steemsense-airdrop","precision":3,"promoted":0,"score_hot":156274.0,"score_trend":3255.71,"tags":"steemsense,token,airdrop,advertising,palnet","title":"Curent idea for STEEMSENSE airdrop","token":"PAL","total_payout_value":0,"total_vote_weight":0,"vote_rshares":0}]
+
+```
+
+
+
+
+
+## get_discussions_by_created
+
+Shows discussions by created date
+
+### Endpoint
+
+`GET /get_discussions_by_created`
+
+### Query Parameters
+
+| Name           |  Type   | Description                             |      Required      |
+| :------------- | :-----: | :-------------------------------------- | :----------------: |
+| token          | strings | scot token name                         | :white_check_mark: |
+| tag            | strings | limit result by a tag                   |                    |
+| limit          |   int   | limit resutls (default 100)             |                    |
+| start_author   | strings | When set, output starts with this entry |                    |
+| start_permlink | strings | When set, output starts with this entry |                    |
+
+### Types
+
+| Field | Description |
+| :---- | :---------: |
+|       |      `      |
+|       |             |
+
+### Examples
+
+```sh
+curl "https://scot-api.steem-engine.com/get_discussions_by_created?token=PAL&tag=steem&limit=1"
+```
+
+## get_discussions_by_trending
+
+Shows discussions by trending score
+
+### Endpoint
+
+`GET /get_discussions_by_trending`
+
+### Query Parameters
+
+| Name           |  Type   | Description                             |      Required      |
+| :------------- | :-----: | :-------------------------------------- | :----------------: |
+| token          | strings | scot token name                         | :white_check_mark: |
+| tag            | strings | limit result by a tag                   |                    |
+| limit          |   int   | limit resutls (default 100)             |                    |
+| start_author   | strings | When set, output starts with this entry |                    |
+| start_permlink | strings | When set, output starts with this entry |                    |
+
+### Types
+
+| Field | Description |
+| :---- | :---------: |
+|       |      `      |
+|       |             |
+
+### Examples
+
+```sh
+curl "https://scot-api.steem-engine.com/get_discussions_by_trending?token=PAL&tag=steem&limit=1"
+```
+
+## get_discussions_by_promoted
+
+Shows promoted discussions
+
+### Endpoint
+
+`GET /get_discussions_by_promoted`
+
+### Query Parameters
+
+| Name           |  Type   | Description                             |      Required      |
+| :------------- | :-----: | :-------------------------------------- | :----------------: |
+| token          | strings | scot token name                         | :white_check_mark: |
+| tag            | strings | limit result by a tag                   |                    |
+| limit          |   int   | limit resutls (default 100)             |                    |
+| start_author   | strings | When set, output starts with this entry |                    |
+| start_permlink | strings | When set, output starts with this entry |                    |
+
+### Types
+
+| Field | Description |
+| :---- | :---------: |
+|       |      `      |
+|       |             |
+
+### Examples
+
+```sh
+curl "https://scot-api.steem-engine.com/get_discussions_by_promoted?token=PAL&tag=steem&limit=1"
+```
+
+## get_discussions_by_hot
+
+Shows discussions by hot score
+
+### Endpoint
+
+`GET /get_discussions_by_hot`
+
+### Query Parameters
+
+| Name           |  Type   | Description                             |      Required      |
+| :------------- | :-----: | :-------------------------------------- | :----------------: |
+| token          | strings | scot token name                         | :white_check_mark: |
+| tag            | strings | limit result by a tag                   |                    |
+| limit          |   int   | limit resutls (default 100)             |                    |
+| start_author   | strings | When set, output starts with this entry |                    |
+| start_permlink | strings | When set, output starts with this entry |                    |
+
+### Types
+
+| Field | Description |
+| :---- | :---------: |
+|       |      `      |
+|       |             |
+
+### Examples
+
+```sh
+curl "https://scot-api.steem-engine.com/get_discussions_by_hot?token=PAL&tag=steem&limit=1"
+```
+
+## get_discussions_by_blog
+
+Shows discussions by trending score
+
+### Endpoint
+
+`GET /get_discussions_by_blog`
+
+### Query Parameters
+
+| Name           |  Type   | Description                             |      Required      |
+| :------------- | :-----: | :-------------------------------------- | :----------------: |
+| token          | strings | scot token name                         | :white_check_mark: |
+| tag            | strings | limit result by an account name         | :white_check_mark: |
+| limit          |   int   | limit resutls (default 100)             |                    |
+| start_permlink | strings | When set, output starts with this entry |                    |
+
+### Types
+
+| Field | Description |
+| :---- | :---------: |
+|       |      `      |
+|       |             |
+
+### Examples
+
+```sh
+curl "https://scot-api.steem-engine.com/get_discussions_by_blog?token=PAL&tag=holger80&limit=1"
+```
+
+​	
