@@ -17,7 +17,10 @@ Shows the state of scotbot
 | last_backend_timestamp  |              Timestamp from the backend server               |
 | last_streamed_block     |     last streamed block number from the steem blockchain     |
 | last_streamed_timestamp |             timestamp of the last streamed block             |
-| time_delay_seconds      | delay in seconds between the last streamed block and the backend clock |
+| time_delay_seconds      | delay in seconds between the last streamed block and now |
+| engine_time_delay_seconds      | delay in seconds between the last streamed sidechain block and now |
+| hive_time_delay_seconds      | delay in seconds between the last streamed hive block and now |
+| hive_engine_time_delay_seconds      | delay in seconds between the last streamed hive sidechain block and now |
 
 ### Examples
 
@@ -27,10 +30,13 @@ curl https://scot-api.steem-engine.com/state
 
 ```json
 {
-  "last_backend_timestamp": "2019-06-27T16:58:18",
-  "last_streamed_block": 34171200,
-  "last_streamed_timestamp": "2019-06-27T16:58:12",
-  "time_delay_seconds": 6.785371
+  "engine_time_delay_seconds":30.908358,
+  "hive_engine_time_delay_seconds":21.908361,
+  "hive_time_delay_seconds":18.90836,
+  "last_backend_timestamp":"2021-06-29T14:54:41",
+  "last_streamed_block":55050061,
+  "last_streamed_timestamp":"2021-06-29T14:54:24",
+  "time_delay_seconds":17.352562
 }
 ```
 
@@ -47,6 +53,7 @@ Shows information about all scot tokens
 | Name  |  Type   | Description     |      Required      |
 | :---- | :-----: | :-------------- | :----------------: |
 | token | strings | scot token name | :white_check_mark: |
+| hive | boolean | get hive info |  |
 
 ### Types
 
@@ -111,6 +118,7 @@ Shows configuration of a scot token
 | Name  |  Type   | Description     | Required |
 | :---- | :-----: | :-------------- | :------: |
 | token | strings | scot token name |          |
+| hive | boolean | get hive info |  |
 
 ### Types
 
@@ -179,6 +187,7 @@ Shows account information
 | Name  |  Type   | Description     | Required |
 | :---- | :-----: | :-------------- | :------: |
 | token | strings | scot token name |          |
+| hive | boolean | get hive info |  |
 
 ### Types
 
@@ -226,7 +235,7 @@ Shows information about a post
 
 | Name  |  Type   | Description     |      Required      |
 | :---- | :-----: | :-------------- | :----------------: |
-|  |  | | |
+| hive | boolean | get hive info |  |
 
 ### Types
 
@@ -305,6 +314,7 @@ Shows feed for a user and token
 | account        | string  | account name                             | :white_check_mark:                   |
 | limit          |   int   | limit resutls (default 100)              |                    |
 | start_entry_id |   int   | when used, output starts with this entry |                    |
+| hive | boolean | get hive info |  |
 
 ### Types
 
@@ -345,6 +355,7 @@ Shows discussions by created date
 | limit          |   int   | limit resutls (default 100)             |                    |
 | start_author   | strings | When set, output starts with this entry |                    |
 | start_permlink | strings | When set, output starts with this entry |                    |
+| hive | boolean | get hive info |  |
 
 ### Types
 
@@ -376,6 +387,7 @@ Shows discussions by trending score
 | limit          |   int   | limit resutls (default 100)             |                    |
 | start_author   | strings | When set, output starts with this entry |                    |
 | start_permlink | strings | When set, output starts with this entry |                    |
+| hive | boolean | get hive info |  |
 
 ### Types
 
@@ -407,6 +419,7 @@ Shows promoted discussions
 | limit          |   int   | limit resutls (default 100)             |                    |
 | start_author   | strings | When set, output starts with this entry |                    |
 | start_permlink | strings | When set, output starts with this entry |                    |
+| hive | boolean | get hive info |  |
 
 ### Types
 
@@ -438,6 +451,7 @@ Shows discussions by hot score
 | limit          |   int   | limit resutls (default 100)             |                    |
 | start_author   | strings | When set, output starts with this entry |                    |
 | start_permlink | strings | When set, output starts with this entry |                    |
+| hive | boolean | get hive info |  |
 
 ### Types
 
@@ -468,6 +482,7 @@ Shows discussions by trending score
 | tag            | strings | limit result by an account name         | :white_check_mark: |
 | limit          |   int   | limit resutls (default 100)             |                    |
 | start_permlink | strings | When set, output starts with this entry |                    |
+| hive | boolean | get hive info |  |
 
 ### Types
 
@@ -482,4 +497,32 @@ Shows discussions by trending score
 curl "https://scot-api.steem-engine.com/get_discussions_by_blog?token=PAL&tag=holger80&limit=1"
 ```
 
+## get_thread
+
+Shows post and replies for a given permlink. Only supported for the SMT version of Scot.
+
+### Endpoint
+
+`GET /get_thread`
+
+### Query Parameters
+
+| Name           |  Type   | Description                             |      Required      |
+| :------------- | :-----: | :-------------------------------------- | :----------------: |
+| token          | string | scot token name                         | :white_check_mark: |
+| author            | string | author of post         | :white_check_mark: |
+| permlink          |   string   | permlink of post             |      :white_check_mark:              |
+
+### Types
+
+| Field | Description |
+| :---- | :---------: |
+|       |      `      |
+|       |             |
+
+### Examples
+
+```sh
+curl "https://hetest.cryptoempirebot.com/scot/get_thread?token=DUNK&author=dunksocial&permlink=creating-value-on-dunk-social"
+```
 ​	
